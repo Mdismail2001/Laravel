@@ -26,3 +26,5 @@ class Task extends Model
     // Optional: automatically handle timestamps
     public $timestamps = true;
 }
+
+

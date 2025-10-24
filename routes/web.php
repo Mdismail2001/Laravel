@@ -8,8 +8,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/about', function () {
-    return view('about');
-});
 
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+
+Route ::get ("/create-task", [TaskController::class, 'create'])->name('create-task');
