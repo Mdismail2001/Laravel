@@ -21,7 +21,7 @@
       </div>
     @endif
 
-    <form method ="POST" action="" class="space-y-4">
+    <form method="POST" action="{{ route('store') }}" class="space-y-4">
       @csrf
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Task Name</label>

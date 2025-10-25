@@ -14,34 +14,32 @@ class TaskController extends Controller
         return view('tasks.allTask', compact('tasks'));
     }
 
-    // 🟢 Show create task form
+    // 🟢 Show the create task form
     public function create()
     {
         return view('tasks.create');
     }
 
-    // 🟢 Store a new task
+    // 🟢 Store the new task in the database
     public function store(Request $request)
     {
+        // Validate input data
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
 
-        Task::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'is_deleted' => false,
-            'is_completed' => false,
-        ]);
+        // Create a new Task instance
+        $task = new Task;
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->is_deleted = false;
+        $task->is_completed = false;
 
-        return redirect()->route('tasks.index')->with('success', 'Task added successfully!');
+        // Save to database
+        $task->save();
+
+        // Redirect to task list with success message
+        return redirect()->route('alltasks')->with('success', 'Task added successfully!');
     }
-
-    // 🟢 View a specific task
-    public function viewTask($id)
-    {
-        $task = Task::findOrFail($id);
-        return view('tasks.viewTask', compact('task'));
-}
 }
