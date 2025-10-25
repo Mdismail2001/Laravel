@@ -8,10 +8,10 @@ use App\Models\Task;
 class TaskController extends Controller
 {
     // 🟢 Show all tasks
-    public function index()
+    public function allTask()
     {
         $tasks = Task::where('is_deleted', false)->get();
-        return view('tasks.index', compact('tasks'));
+        return view('tasks.allTask', compact('tasks'));
     }
 
     // 🟢 Show create task form
@@ -37,4 +37,11 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index')->with('success', 'Task added successfully!');
     }
+
+    // 🟢 View a specific task
+    public function viewTask($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.viewTask', compact('task'));
+}
 }

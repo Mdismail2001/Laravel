@@ -21,7 +21,7 @@
       </div>
     @endif
 
-    <form class="space-y-4">
+    <form method ="POST" action="" class="space-y-4">
       @csrf
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Task Name</label>
@@ -34,7 +34,7 @@
       </div>
 
       <div class="flex justify-between items-center">
-        <a href="{{ route('tasks.index') }}" class="text-gray-600 hover:text-gray-800 text-sm">← Back to list</a>
+        <a href="{{ route('tasks') }}" class="text-gray-600 hover:text-gray-800 text-sm">← Back to list</a>
         <button type="submit" class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
           Save Task
         </button>

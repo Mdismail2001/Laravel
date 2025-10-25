@@ -9,6 +9,8 @@ Route::get('/', function () {
 
 
 
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+Route::get('/tasks', [TaskController::class, 'allTask'])->name('tasks');
 
 Route ::get ("/create-task", [TaskController::class, 'create'])->name('create-task');
+
+Route::get('/tasks/{id}', [TaskController::class, ' viewTask'])->name('view-task');

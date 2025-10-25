@@ -34,7 +34,7 @@
             <td class="py-3 px-6 font-medium">{{ $task->name }}</td>
             <td class="py-3 px-6">{{ $task->description }}</td>
             <td class="py-3 px-6 text-center space-x-2">
-              <a href="#" 
+              <a href="{{ route('view-task', ['id' => $task->id]) }}" 
                  class="px-3 py-1 bg-green-500 text-white rounded-md text-xs hover:bg-green-600 transition">
                     View
               </a>
