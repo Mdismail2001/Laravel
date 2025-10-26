@@ -44,14 +44,14 @@ class TaskController extends Controller
     }
 
     // 🟢 View a specific task
-    public function viewTask(){
-        return view('tasks.viewTask');
+    public function viewTask($id){
+        $task = Task::findOrFail($id);
+        return view('tasks.viewTask', ['task' => $task]);
     }
 
     // 🟢 Edit a specific task
     public function editTask($id){
         $task = Task::findOrFail($id);
-
-        return view('tasks.editTask',[ 'task' => $task]);
+        return view('tasks.editTask',['task' => $task]);
     }
 }
