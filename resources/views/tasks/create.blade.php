@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Task</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="min-h-screen bg-gray-100 flex flex-col items-center py-10">
-
+@extends('layouts.base')
+@section('title', 'Add Tasks')
+@section('content')
   <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
     <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Add New Task</h1>
 
@@ -42,5 +35,4 @@
     </form>
   </div>
 
-</body>
-</html>
+@endsection

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Manager</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="min-h-screen bg-gray-100 flex flex-col items-center py-10">
+@extends('layouts.base')
+@section('title', 'All Tasks')
+@section('content')
   
   <div class="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-8">
     <div class="flex justify-between items-center mb-6">
@@ -61,5 +55,4 @@
     </div>
   </div>
 
-</body>
-</html>
+@endsection
