@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
 
@@ -15,5 +12,6 @@ Route ::get("/create-task", [TaskController::class, 'create'])->name('create-tas
 
 Route ::post("/store", [TaskController::class, 'store'])->name('store');
 
+Route ::get("/view-task/{id}", [TaskController::class, 'viewTask'])->name('view-task');
 
-// Route::get('/tasks/{id}', [TaskController::class, ' viewTask'])->name('view-task');
+Route:: get('/edit-task/{id}', [TaskController::class, 'editTask'])->name('edit-task');

@@ -42,4 +42,16 @@ class TaskController extends Controller
         // Redirect to task list with success message
         return redirect()->route('alltasks')->with('success', 'Task added successfully!');
     }
+
+    // 🟢 View a specific task
+    public function viewTask(){
+        return view('tasks.viewTask');
+    }
+
+    // 🟢 Edit a specific task
+    public function editTask($id){
+        $task = Task::findOrFail($id);
+
+        return view('tasks.editTask',[ 'task' => $task]);
+    }
 }
