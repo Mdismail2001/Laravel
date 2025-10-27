@@ -1,8 +1,13 @@
 @extends('layouts.base')
 @section('title', 'Add Tasks')
 @section('content')
+
   <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-    <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Add New Task</h1>
+
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-semibold text-gray-800">Add New Task</h1>
+      <x-back-button />   
+    </div>
 
     @if ($errors->any())
       <div class="bg-red-100 text-red-600 p-3 rounded mb-4">
@@ -14,25 +19,21 @@
       </div>
     @endif
 
-    <form method="POST" action="{{ route('store') }}" class="space-y-4">
-      @csrf
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Task Name</label>
-        <input type="text" name="name" class="w-full border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter task name" required>
-      </div>
+    <x-dynamic-form action="{{ route('store') }}" method="POST">
+            <div>
+                <label class="block text-gray-700">Task Name</label>
+                <input type="text" name="name" class="border rounded p-2 w-full">
+            </div>
+          <div>
+              <label class="block text-gray-700">Description</label>
+              <textarea name="description" class="border rounded p-2 w-full"></textarea>
+          </div>
 
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-        <textarea name="description" rows="4" class="w-full border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter task description" required></textarea>
-      </div>
+          <x-slot name="buttonText">Create Task</x-slot>
 
-      <div class="flex justify-between items-center">
-        <a href="{{ route('alltasks') }}" class="text-gray-600 hover:text-gray-800 text-sm">← Back to list</a>
-        <button type="submit" class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-          Save Task
-        </button>
-      </div>
-    </form>
+    </x-dynamic-form>
+
+
   </div>
 
 @endsection

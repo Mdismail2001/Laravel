@@ -1,36 +1,23 @@
 @extends('layouts.base')
 @section('title', 'Edit Task')
 @section('content')
-<div>
-    <h1 class="text-3xl font-semibold text-gray-800 mb-6">Edit Task</h1>
-    
-    <div class="bg-white p-6 rounded-2xl shadow-lg max-w-md">
-        <form action="{{ route('edit', $task->id) }}" method="POST" class="space-y-4">
+  <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
+        <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-semibold text-gray-800">Add New Task</h1>
+        <x-back-button />  
+        </div>
+        <x-dynamic-form action="{{ route('edit', $task->id) }}" method="POST">
+            <div>
+                <label class="block text-gray-700">Event Title</label>
+                <input type="text" name="name" value="{{ $task->name }}" class="border rounded p-2 w-full">
+            </div>
 
-            @csrf
-            <!-- @method('PUT') -->
-            
             <div>
-                <label for="name" class="block text-gray-700 font-medium mb-2">Task Name</label>
-                <input type="text" id="name" name="name" value="{{ $task->name }}" 
-                       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <label class="block text-gray-700">Date</label>
+                <input type="text" name="description" value="{{ $task->description }}" class="border rounded p-2 w-full">
             </div>
-            
-            <div>
-                <label for="description" class="block text-gray-700 font-medium mb-2">Description</label>
-                <textarea id="description" name="description" rows="4" 
-                          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>{{ $task->description }}</textarea>
-            </div>
-            
-            <div class="flex justify-between items-center">
-                <a href="{{ route('alltasks') }}" 
-                   class="text-blue-600 hover:underline">Back to All Tasks</a>
-                <button type="submit" 
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
-                    Update Task
-                </button>
-            </div>
-        </form>
-    </div>
+
+            <x-slot name="buttonText">Update Task</x-slot>
+        </x-dynamic-form>
 </div>
 @endsection

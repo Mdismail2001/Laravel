@@ -44,7 +44,7 @@
                  class="px-3 py-1 bg-yellow-500 text-white rounded-md text-xs hover:bg-yellow-600 transition">
                  Edit
               </a>
-              <a href="#" 
+              <a href="{{ route('delete-task', $task->id) }}" 
                  class="px-3 py-1 bg-red-500 text-white rounded-md text-xs hover:bg-red-600 transition">
                  Delete
               </a>

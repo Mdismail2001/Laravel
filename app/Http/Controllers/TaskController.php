@@ -74,4 +74,13 @@ class TaskController extends Controller
         // Redirect to task list with success message
         return redirect()->route('alltasks')->with('success', 'Task updated successfully!');
     }
+
+    // 🟢 Delete a specific task
+    public function deleteTask($id){
+        $task = Task::findOrFail($id);
+        $task->is_deleted = true;
+        $task->save();
+
+        return redirect()->route('alltasks')->with('success', 'Task deleted successfully!');    
+    }
 }

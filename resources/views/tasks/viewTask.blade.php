@@ -25,13 +25,10 @@
         </table>
     </div>
 
-    <!-- Back Button -->
-    <div class="mt-6 text-right">
-        <a href="{{ route('alltasks') }}" 
-           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
-            ← Back to All Tasks
-        </a>
-    </div>
+    <!-- this is a dynamic button use for go to the back page -->
+    <div class="flex justify-center mt-6">
+        <x-back-button />   
+    </div>  
 </div>
 
 @endsection
