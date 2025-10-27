@@ -1,17 +1,18 @@
 @extends('layouts.base')
 @section('title', 'All Tasks')
 @section('content')
-  
+
   <div class="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-8">
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-3xl font-semibold text-gray-800">Task List</h1>
 
       @if (session('success'))
-        <div class="bg-green-100 text-green-600 p-3 rounded mb-4">
-          {{ session('success') }}
-        </div>
-        @endif       
-      
+      <div id="success-message" class="bg-green-100 text-green-600 p-3 rounded mb-4 transition-opacity duration-500">
+      {{ session('success') }}
+      </div>
+      @endif
+
+
       <a href="{{ route('create-task') }}"
          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
          + Add Task
@@ -33,13 +34,13 @@
           <tr class="hover:bg-gray-100 transition">
             <td class="py-3 px-6">{{ $task->id }}</td>
             <td class="py-3 px-6 font-medium">{{ $task->name }}</td>
-            <td class="py-3 px-6">{{ $task->description }}</td>
+            <td class="py-3 px-6 ">{{ $task->description }}</td>
             <td class="py-3 px-6 text-center space-x-2">
-              <a href="{{route('view-task', $task->id)}}" 
+              <a href="{{ route('view-task', $task->id) }}" 
                  class="px-3 py-1 bg-green-500 text-white rounded-md text-xs hover:bg-green-600 transition">
                     View
               </a>
-              <a href="{{route('edit-task', $task->id)}}" 
+              <a href="{{ route('edit-task', $task->id) }}" 
                  class="px-3 py-1 bg-yellow-500 text-white rounded-md text-xs hover:bg-yellow-600 transition">
                  Edit
               </a>
@@ -54,5 +55,6 @@
       </table>
     </div>
   </div>
+
 
 @endsection

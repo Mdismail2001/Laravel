@@ -49,9 +49,29 @@ class TaskController extends Controller
         return view('tasks.viewTask', ['task' => $task]);
     }
 
+
     // 🟢 Edit a specific task
     public function editTask($id){
         $task = Task::findOrFail($id);
         return view('tasks.editTask',['task' => $task]);
+    }
+    public function edit(Request $request, $id){
+        // dd("Edit function called for task ID: " . $id);
+        // // Validate input data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        // Find the task by ID
+        $task = Task::findOrFail($id);
+        $task->name = $request->name;
+        $task->description = $request->description;
+
+        // Save changes to database
+        $task->save();
+
+        // Redirect to task list with success message
+        return redirect()->route('alltasks')->with('success', 'Task updated successfully!');
     }
 }

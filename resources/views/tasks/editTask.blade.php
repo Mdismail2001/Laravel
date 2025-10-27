@@ -5,9 +5,10 @@
     <h1 class="text-3xl font-semibold text-gray-800 mb-6">Edit Task</h1>
     
     <div class="bg-white p-6 rounded-2xl shadow-lg max-w-md">
-        <form   class="space-y-4">
+        <form action="{{ route('edit', $task->id) }}" method="POST" class="space-y-4">
+
             @csrf
-            @method('PUT')
+            <!-- @method('PUT') -->
             
             <div>
                 <label for="name" class="block text-gray-700 font-medium mb-2">Task Name</label>
