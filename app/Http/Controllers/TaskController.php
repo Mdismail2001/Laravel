@@ -27,6 +27,12 @@ class TaskController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+        ],[
+        'name.required' => 'Sila masukkan nama tugasan.',
+        'name.string' => 'Nama tugasan mesti dalam bentuk teks.',
+        'name.max' => 'Nama tugasan tidak boleh melebihi 255 aksara.',
+        'description.required' => 'Sila masukkan penerangan untuk tugasan.',
+        'description.string' => 'Penerangan mesti dalam bentuk teks.',
         ]);
 
         // Create a new Task instance
