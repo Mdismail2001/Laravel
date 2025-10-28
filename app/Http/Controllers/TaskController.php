@@ -83,6 +83,8 @@ class TaskController extends Controller
 
     // 🟢 Delete a specific task
     public function deleteTask($id){
+        // dd("Delete function called for task ID: " . $id);
+
         $task = Task::findOrFail($id);
         $task->is_deleted = true;
         $task->save();

@@ -9,7 +9,22 @@
 </head>
 <body class="min-h-screen bg-gray-100 flex flex-col items-center py-10">
 
-    @yield('content')
+<x-navbar 
+    title="Task Management System"
+    :links="[
+        'All Tasks'=> route('alltasks'), 
+        'Create Task' => route('create-task'),
+        'About',
+        'Contact',
+        'Home'
+    ]"
+    username="Ismail"
+/>
+
+  @yield('content')
+
+  {{-- ✅ This stack is for modals --}}
+  @stack('modals')
 
 </body>
 </html>

@@ -19,4 +19,4 @@ Route:: get('/edit-task/{id}', [TaskController::class, 'editTask'])->name('edit-
 Route:: post('/edit/{id}', [TaskController::class, 'edit'])->name('edit');
 
 // Delete Task Route
-Route:: get('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('delete-task');
+Route:: delete('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('delete-task');
