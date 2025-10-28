@@ -2,6 +2,20 @@
 @section('title', 'All Tasks')
 @section('content')
 
+<x-navbar 
+    title="Task Management System"
+    :links="[
+        'All Tasks'=> route('alltasks'), 
+        'Create Task' => route('create-task'),
+        'About',
+        'Contact',
+        'Home'
+    ]"
+    username="Ismail"
+/>
+
+
+
   <div class="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-8">
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-3xl font-semibold text-gray-800">Task List</h1>
