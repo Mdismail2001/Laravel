@@ -7,13 +7,13 @@
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-gray-100 flex flex-col items-center ">
+<body class="w-full bg-white flex flex-col items-center ">
 
 <x-navbar 
     title="To do App"
     :links="[
         'All Tasks'=> route('alltasks'), 
-        'Create Task' => route('create-task'),
+        'Progress'=> route('progress')
     ]"
     username="Ismail"
 />

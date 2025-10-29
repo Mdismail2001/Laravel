@@ -19,3 +19,6 @@ Route::post('/edit/{id}', [TaskController::class, 'edit'])->name('edit');
 
 // Delete Task Route
 Route:: delete('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('delete-task');
+
+// Progress Task Route
+Route:: get('/progress', [TaskController::class, 'progressTask'])->name('progress');

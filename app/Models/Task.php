@@ -11,11 +11,12 @@ class Task extends Model
 
     // Mass assignable attributes
     protected $fillable = [
-        'name',
-        'description',
-        'is_deleted',
-        'is_completed',
-    ];
+    'name',
+    'description',
+    'is_deleted',
+    'is_completed',
+    'status',
+];
 
     // Cast attributes to native types
     protected $casts = [

@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-8">
+<div class="w-auto bg-red rounded-2xl shadow-lg p-8">
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-semibold text-gray-800">Task List</h1>
 
@@ -27,6 +27,7 @@
           <th class="py-3 px-6 text-left">ID</th>
           <th class="py-3 px-6 text-left">Name</th>
           <th class="py-3 px-6 text-left">Description</th>
+          <th class="py-3 px-6 text-left">Status</th>
           <th class="py-3 px-6 text-center">Actions</th>
         </tr>
       </thead>
@@ -36,6 +37,20 @@
           <td class="py-3 px-6">{{ $task->id }}</td>
           <td class="py-3 px-6 font-medium">{{ $task->name }}</td>
           <td class="py-3 px-6">{{ $task->description }}</td>
+          <td class="py-3 px-6 font-medium">
+            @php
+                $statusColors = [
+                    'pending' => 'bg-yellow-100 text-yellow-700',
+                    'in-progress' => 'bg-blue-100 text-blue-700',
+                    'completed' => 'bg-green-100 text-green-700',
+                ];
+                $colorClass = $statusColors[$task->status] ?? 'bg-gray-100 text-gray-700';
+            @endphp
+
+            <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $colorClass }}">
+                {{ ucfirst($task->status) }}
+            </span>
+          </td>
           <td class="py-3 px-6 text-center space-x-2">
             <a href="{{ route('view-task', $task->id) }}" 
                class="px-3 py-1 bg-green-500 text-white rounded-md text-xs hover:bg-green-600 transition">
