@@ -116,8 +116,15 @@ class TaskController extends Controller
     /**
      * 🟢 Show all tasks in progress
      */
-    public function progressTask(){
-        // $tasks = Task::where('status', 'in-progress')->where('is_deleted', false)->get();
-        return view('tasks.progress');
+    public function progressChart()
+    {
+        // Count tasks by status
+        $completed = \App\Models\Task::where('status', 'completed')->count();
+        $inProgress = \App\Models\Task::where('status', 'in-progress')->count();
+        $pending = \App\Models\Task::where('status', 'pending')->count();
+
+        // dd($completed, $inProgress, $pending);
+        // Pass data to the view
+        return view('tasks.progress', compact('completed', 'inProgress', 'pending'));
     }
 }
