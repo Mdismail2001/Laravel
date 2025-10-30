@@ -123,6 +123,7 @@
 @vite('resources/js/progressChart.js')
 
 
+
 <!-- Push the  modal into the 'modals' stack -->
 @push('modals')
   <x-delete-modal />

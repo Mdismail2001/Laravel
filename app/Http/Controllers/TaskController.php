@@ -8,7 +8,7 @@ use App\Models\Task;
 class TaskController extends Controller
 {
     /**
-     * 🟢 Show all tasks
+     *  Show all tasks
      */
     public function allTask()
     {
@@ -20,7 +20,7 @@ class TaskController extends Controller
     }
 
     /**
-     * 🟢 Store a new task
+     *  Store a new task
      */
     public function store(Request $request)
     {
@@ -73,7 +73,7 @@ class TaskController extends Controller
     // }
 
     /**
-     * 🟡 Update an existing task
+     *  Update an existing task
      */
     public function edit(Request $request, $id)
     {
@@ -101,7 +101,7 @@ class TaskController extends Controller
         // Save updates
         $task->save();
 
-        return redirect()->route('alltasks')->with('success', 'Task updated successfully!');
+        return redirect()->route('alltasks')->with('success', 'Task edit successfully!');
     }
 
     /**

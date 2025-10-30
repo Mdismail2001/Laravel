@@ -100,4 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('viewModal').classList.add('hidden');
     document.getElementById('viewModal').classList.remove('flex');
   };
+
+  // success message  fade out
+const successMessage = document.getElementById('success-message');
+  if (successMessage) {
+    setTimeout(() => {
+      successMessage.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+      setTimeout(() => successMessage.remove(), 500);
+    }, 2000); // fade after 2s
+  }
+  
 });
