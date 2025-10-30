@@ -52,7 +52,7 @@ class TaskController extends Controller
     }
 
     /**
-     * 🟢 View a specific task
+     *  View a specific task
      */
     public function viewTask($id)
     {
@@ -61,7 +61,7 @@ class TaskController extends Controller
     }
 
     /**
-     * 🟢 Edit (load edit form)
+     *  Edit (load edit form)
      */
     public function editTask($id)
     {

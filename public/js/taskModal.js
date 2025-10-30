@@ -1,58 +1,103 @@
+// public/js/taskModal.js
+
 document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('taskModal');
-  const cancelBtn = document.getElementById('cancelTaskModal');
-  const form = document.getElementById('taskForm');
+  // ================================
+  // 🟢 CREATE / EDIT MODAL
+  // ================================
+  const taskModal = document.getElementById('taskModal');
+  const cancelTaskModalBtn = document.getElementById('cancelTaskModal');
+  const taskForm = document.getElementById('taskForm');
   const nameInput = document.getElementById('taskName');
   const descInput = document.getElementById('taskDescription');
   const statusInput = document.getElementById('taskStatus'); // ✅ new
   const modalTitle = document.getElementById('taskModalTitle');
   const submitBtn = document.getElementById('taskSubmitBtn');
 
-  // 🟢 CREATE MODAL
+  // 🟢 Create Modal
   window.showCreateModal = function (createUrl) {
     modalTitle.textContent = 'Add New Task';
     submitBtn.textContent = 'Create Task';
-    form.action = createUrl;
-    form.method = 'POST';
+    taskForm.action = createUrl;
+    taskForm.method = 'POST';
 
     // Reset values
     nameInput.value = '';
     descInput.value = '';
     statusInput.value = 'pending'; // default
 
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    taskModal.classList.remove('hidden');
+    taskModal.classList.add('flex');
   };
 
-  // 🟡 EDIT MODAL
+  // 🟡 Edit Modal
   window.showEditModal = function (editUrl, name, description, status) {
     modalTitle.textContent = 'Edit Task';
     submitBtn.textContent = 'Update Task';
-    form.action = editUrl;
+    taskForm.action = editUrl;
 
-    // Remove old PUT if any
-    const oldMethod = form.querySelector('input[name="_method"]');
+    // Remove old method if exists
+    const oldMethod = taskForm.querySelector('input[name="_method"]');
     if (oldMethod) oldMethod.remove();
 
     // Add PUT method
     const methodInput = document.createElement('input');
     methodInput.type = 'hidden';
     methodInput.name = '_method';
-    methodInput.value = 'POST';
-    form.appendChild(methodInput);
+    methodInput.value = 'POST'; // or 'PUT' if using resource routes
+    taskForm.appendChild(methodInput);
 
-    // Fill existing values
+    // Fill existing data
     nameInput.value = name;
     descInput.value = description;
-    statusInput.value = status; // ✅ set status dynamically
+    statusInput.value = status;
 
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    taskModal.classList.remove('hidden');
+    taskModal.classList.add('flex');
   };
 
-  // ❌ Close modal
-  cancelBtn.addEventListener('click', () => {
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
+  // ❌ Close Create/Edit Modal
+  cancelTaskModalBtn.addEventListener('click', () => {
+    taskModal.classList.add('hidden');
+    taskModal.classList.remove('flex');
   });
+
+
+  // ================================
+  // 🔴 DELETE MODAL
+  // ================================
+  const deleteModal = document.getElementById('deleteModal');
+  const cancelDeleteBtn = document.getElementById('cancelDelete');
+  const deleteForm = document.getElementById('deleteForm');
+
+  window.showDeleteModal = function (deleteUrl) {
+    console.log("Delete URL:", deleteUrl);
+    deleteForm.setAttribute('action', deleteUrl);
+    deleteModal.classList.remove('hidden');
+    deleteModal.classList.add('flex');
+  };
+
+  window.closeDeleteModal = function () {
+    deleteModal.classList.add('hidden');
+    deleteModal.classList.remove('flex');
+  };
+
+  cancelDeleteBtn.addEventListener('click', () => {
+    closeDeleteModal();
+  });
+
+
+  // ================================
+  // 🔵 VIEW MODAL
+  // ================================
+  window.showViewModal = function (url, name, description) {
+    document.getElementById('viewTaskName').textContent = name;
+    document.getElementById('viewTaskDescription').textContent = description;
+    document.getElementById('viewModal').classList.remove('hidden');
+    document.getElementById('viewModal').classList.add('flex');
+  };
+
+  window.closeViewModal = function () {
+    document.getElementById('viewModal').classList.add('hidden');
+    document.getElementById('viewModal').classList.remove('flex');
+  };
 });

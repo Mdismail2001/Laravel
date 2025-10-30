@@ -1,34 +1,47 @@
-@extends('layouts.base')
-@section('title', 'View Task')
+<div x-data="{ open: true }" class="flex justify-center items-center min-h-screen bg-gray-100">
 
-@section('content')
+    <!-- Overlay -->
+    <div 
+        x-show="open"
+        class="fixed inset-0 bg-gray-800 bg-opacity-50"
+        x-transition.opacity
+        @click="open = false"
+    ></div>
 
-<div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-lg">
-    
-    <h1 class="text-3xl font-semibold text-gray-800 mb-6 text-center">View Task</h1>
-    
-    <!-- Task Table -->
-    <div class="overflow-x-auto">
-        <table class="min-w-full border border-gray-200 rounded-lg">
-            <thead class="bg-gray-100 border-b">
-                <tr>
-                    <th class="text-left px-6 py-3 text-gray-700 font-semibold">Task Name</th>
-                    <th class="text-left px-6 py-3 text-gray-700 font-semibold">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4 text-gray-800">{{ $task->name }}</td>
-                    <td class="px-6 py-4 text-gray-700">{{ $task->description }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Modal -->
+    <div 
+        x-show="open"
+        x-transition
+        class="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 z-50 text-center"
+    >
+        <!-- Close Button -->
+        <button 
+            @click="open = false"
+            class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" 
+                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Title -->
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Task Details</h2>
+
+        <!-- Task Info -->
+        <div class="space-y-4">
+            <div>
+                <p class="text-gray-500 font-medium">Task Name</p>
+                <p class="text-lg font-semibold text-gray-800">{{ $task->name }}</p>
+            </div>
+            <div>
+                <p class="text-gray-500 font-medium">Description</p>
+                <p class="text-gray-700">{{ $task->description }}</p>
+            </div>
+            <div>
+                <p class="text-gray-500 font-medium">Status</p>
+                <p class="text-gray-800 capitalize font-medium">{{ $task->status }}</p>
+            </div>
+        </div>
     </div>
-
-    <!-- this is a dynamic button use for go to the back page -->
-    <div class="flex justify-center mt-6">
-        <x-back-button />   
-    </div>  
 </div>
-
-@endsection
