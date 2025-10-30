@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fill existing data
     nameInput.value = name;
     descInput.value = description;
-    statusInput.value = status;
+    statusInput.value = status; // set existing status
 
     taskModal.classList.remove('hidden');
     taskModal.classList.add('flex');

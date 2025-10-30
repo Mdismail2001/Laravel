@@ -12,8 +12,11 @@ class TaskController extends Controller
      */
     public function allTask()
     {
-        $tasks = Task::where('is_deleted', false)->get();
-        return view('tasks.allTask', compact('tasks'));
+        $tasks = Task::where('is_deleted', false)->orderby('id','desc')->get();
+        $completed = Task::where('status', 'completed')->where('is_deleted', false)->count();
+        $inProgress = Task::where('status', 'in-progress')->where('is_deleted', false)->count();
+        $pending = Task::where('status', 'pending')->where('is_deleted', false)->count();
+        return view('tasks.allTask', compact('tasks', 'completed', 'inProgress', 'pending'));
     }
 
     /**
@@ -63,11 +66,11 @@ class TaskController extends Controller
     /**
      *  Edit (load edit form)
      */
-    public function editTask($id)
-    {
-        $task = Task::findOrFail($id);
-        return view('tasks.editTask',compact('task'));
-    }
+    // public function editTask($id)
+    // {
+    //     $task = Task::findOrFail($id);
+    //     return view('tasks.editTask',compact('task'));
+    // }
 
     /**
      * 🟡 Update an existing task
@@ -113,18 +116,4 @@ class TaskController extends Controller
         return redirect()->route('alltasks')->with('success', 'Task deleted successfully!');
     }
 
-    /**
-     * 🟢 Show all tasks in progress
-     */
-    public function progressChart()
-    {
-        // Count tasks by status
-        $completed = \App\Models\Task::where('status', 'completed')->count();
-        $inProgress = \App\Models\Task::where('status', 'in-progress')->count();
-        $pending = \App\Models\Task::where('status', 'pending')->count();
-
-        // dd($completed, $inProgress, $pending);
-        // Pass data to the view
-        return view('tasks.progress', compact('completed', 'inProgress', 'pending'));
-    }
 }

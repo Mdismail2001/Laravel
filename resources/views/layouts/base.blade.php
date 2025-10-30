@@ -12,8 +12,6 @@
 <x-navbar 
     title="To do App"
     :links="[
-        'All Tasks'=> route('alltasks'), 
-        'Progress chart'=> route('progress')
     ]"
     username="Ismail"
 />
